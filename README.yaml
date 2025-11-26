@@ -1,0 +1,132 @@
+# 🏗️ Terraform-AWS-S3
+
+metadata:
+  name: terraform-aws-s3
+  description: >
+    Production-grade, reusable AWS S3 Terraform module by navneetbishnoi.
+    Designed for reliability, performance, and security following AWS best practices.
+  organization: navneetbishnoi
+  website: "https://www.navneetbishnoi.com"
+  contact: "hello@navneetbishnoi.com"
+  license: MIT
+  badges:
+    - label: Made by navneetbishnoi
+      url: "https://www.navneetbishnoi.com"
+      image: "https://img.shields.io/badge/Made%20by-navneetbishnoi-blue?style=flat-square&logo=terraform"
+    - label: License
+      url: "LICENSE"
+      image: "https://img.shields.io/badge/License-MIT-blue.svg"
+    - label: Terraform
+      image: "https://img.shields.io/badge/Terraform-1.13%2B-purple.svg?logo=terraform"
+    - label: CI
+      url: "https://github.com/navneetbishnoi/terraform-aws-ec2/actions/workflows/ci.yml"
+      image: "https://github.com/navneetbishnoi/terraform-aws-ec2/actions/workflows/ci.yml/badge.svg"
+
+about_navneetbishnoi:
+  description: >
+    navneetbishnoi delivers Cloud & DevOps excellence for modern teams:
+    Infrastructure Automation with Terraform, Ansible & Kubernetes,
+    Cost Optimization, Security & Compliance in CI/CD, and Fully Managed Operations across AWS, Azure & GCP.
+  services:
+    - Infrastructure Automation: Terraform, Ansible, Kubernetes
+    - Cost Optimization and Right-sizing
+    - Security & Compliance for CI/CD pipelines
+    - Fully Managed Cloud Operations (AWS, Azure, GCP)
+
+module:
+  name: terraform-aws-s3
+  description: >
+    Terraform module to create and manage AWS S3 buckets with full configuration flexibility, including versioning, encryption, lifecycle, replication, CORS, and logging.
+  features:
+    - Creates and manages AWS S3 buckets with customizable configurations
+    - Versioning, logging, encryption (KMS/SSE)
+    - Lifecycle management, replication
+    - Configurable ACLs, CORS, public access
+    - Integration with CloudFront, Lambda, IAM
+    - Static website hosting support
+    - Metrics and monitoring via CloudWatch & CloudTrail
+    - Automatic tagging and naming via Labels module
+  usage_examples:
+    - name: Default S3 Bucket
+      code: |
+        module "s3_bucket" {
+          source      = "git::https://github.com/navneetbishnoi/terraform-aws-s3.git?ref=v1.0.0"
+          name        = "test-secure-bucket"
+          environment = local.environment
+          label_order = local.label_order
+          s3_name     = "cdkc"
+          acl         = "private"
+          versioning  = true
+        }
+    - name: S3 with encryption
+      code: |
+        module "s3_bucket" {
+          source      = "git::https://github.com/navneetbishnoi/terraform-aws-s3.git?ref=v1.0.0"
+          name        = "test-encryption-bucket"
+          s3_name     = "dmzx"
+          environment = local.environment
+          label_order = local.label_order
+          acl                           = "private"
+          enable_server_side_encryption = true
+          enable_kms                    = true
+          kms_master_key_id             = module.kms_key.key_arn
+          versioning                    = true
+        }
+    - name: S3 with logging
+      code: |
+        module "s3_bucket" {
+          source        = "git::https://github.com/navneetbishnoi/terraform-aws-s3.git?ref=v1.0.0"
+          name          = "test-logging-bucket"
+          s3_name       = "wewrrt"
+          environment   = local.environment
+          label_order   = local.label_order
+          versioning    = true
+          acl           = "private"
+          logging       = true
+          target_bucket = module.logging_bucket.id
+          target_prefix = "logs"
+          depends_on    = [module.logging_bucket]
+        }
+    - name: S3 with replication
+      code: |
+        module "s3_bucket" {
+          source      = "git::https://github.com/navneetbishnoi/terraform-aws-s3.git?ref=v1.0.0"
+          name        = "test-s3"
+          s3_name     = "poxord"
+          environment = local.environment
+          label_order = local.label_order
+          acl = "private"
+          replication_configuration = { ... }
+        }
+
+outputs:
+  - name: bucket_id
+    description: Unique identifier of the S3 bucket
+  - name: bucket_arn
+    description: ARN of the S3 bucket
+  - name: bucket_name
+    description: Name of the S3 bucket
+  - name: region
+    description: AWS region of the bucket
+  - name: hosted_zone_id
+    description: Route53 hosted zone ID for website hosting
+  - name: domain_name
+    description: Bucket domain name
+  - name: website_endpoint
+    description: Website endpoint if static hosting enabled
+  - name: tags
+    description: Mapping of tags applied to the bucket
+
+tag_rules:
+  cloud: AWS
+  case: TitleCase
+  allowed_characters: Any
+  examples:
+    - Name
+    - Environment
+    - CostCenter
+
+maintained_by:
+  organization: navneetbishnoi
+  website: "https://www.navneetbishnoi.com"
+  slogan: "Simplifying Cloud, Securing Scale."
