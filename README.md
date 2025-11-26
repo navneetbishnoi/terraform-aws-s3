@@ -5,7 +5,7 @@
 [![Terraform](https://img.shields.io/badge/Terraform-1.13%2B-purple.svg?logo=terraform)](#)
 [![CI](https://github.com/navneetbishnoi/terraform-aws-ec2/actions/workflows/ci.yml/badge.svg)](https://github.com/navneetbishnoi/terraform-aws-ec2/actions/workflows/ci.yml)
 
-> 🌩️ **A production-grade, reusable AWS Ec2 module by [navneetbishnoi](https://www.navneetbishnoi.com)**
+> 🌩️ **A production-grade, reusable AWS Ec2 module by [navneetbishnoi]**
 > Designed for reliability, performance, and security — following AWS networking best practices.
 ---
 
@@ -17,8 +17,6 @@
 - 🛡️ **Security & Compliance** baked into CI/CD pipelines
 - ⚙️ **Fully Managed Operations** across AWS, Azure, and GCP
 
-> 💡 Need enterprise-grade DevOps automation?
-> 👉 Visit [**www.navneetbishnoi.com**](https://www.navneetbishnoi.com) or email **hello@navneetbishnoi.com**
 
 ---
 ## 📘 Introduction
