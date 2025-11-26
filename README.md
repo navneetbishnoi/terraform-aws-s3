@@ -1,4 +1,4 @@
-# # 🏗️ Terraform-AWS-AWS S3
+# # 🏗️ Terraform-AWS-S3
 
 [![navneetbishnoi](https://img.shields.io/badge/Made%20by-navneetbishnoi-blue?style=flat-square&logo=terraform)](https://www.navneetbishnoi.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
